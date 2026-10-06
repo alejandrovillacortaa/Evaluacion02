@@ -284,7 +284,7 @@ El Escenario B cuesta **US$ 792/mes** frente a **US$ 972/mes** del A. Eso es un 
 
 ## Pregunta 3: IA libre
 
-IA elegida: **Gemini** (Google)
+IA elegida: **claude**
 
 ### Esquema JSON
 
@@ -319,7 +319,7 @@ Convierte los siguientes correos de postulación a JSON con los campos: nombre, 
 3. "Estimados, adjunto mi CV para QA Automation. Mi nombre es Lucía Fernández; 5 años de experiencia con Selenium, Cypress y Java. Pretensión: 6000 soles. Podría incorporarme en dos semanas."
 ```
 
-Captura: ![Salida zero-shot](img/p3-zeroshot.png)
+
 
 ### Los 3 ejemplos diseñados (few-shot)
 
@@ -411,7 +411,7 @@ Ahora procesa estos correos:
 3. "Estimados, adjunto mi CV para QA Automation. Mi nombre es Lucía Fernández; 5 años de experiencia con Selenium, Cypress y Java. Pretensión: 6000 soles. Podría incorporarme en dos semanas."
 ```
 
-Captura: ![Salida few-shot](img/p3-fewshot.png)
+
 
 ### Resultado correcto esperado
 
@@ -448,24 +448,24 @@ Captura: ![Salida few-shot](img/p3-fewshot.png)
 
 Las dos salidas se validaron en un validador JSON (jsonlint.com).
 
-Capturas: ![Validación zero-shot](img/p3-validador-zeroshot.png) ![Validación few-shot](img/p3-validador-fewshot.png)
+Capturas: ![Validación zero-shot](img/p3-validador-zeroshot.png)
 
 | Pregunta | Zero-shot | Few-shot |
 | --- | --- | --- |
-| ¿El JSON es válido? | ⚠️ | ⚠️ |
-| ¿Respetó los nombres de los campos? | ⚠️ | ⚠️ |
-| ¿Convirtió bien los números ("año y medio" a 1.5, "6000 soles" a 6000)? | ⚠️ | ⚠️ |
-| ¿Usó null cuando faltaba el dato (Diego)? | ⚠️ | ⚠️ |
+| ¿El JSON es válido? | si | s |
+| ¿Respetó los nombres de los campos? | si | si |
+| ¿Convirtió bien los números ("año y medio" a 1.5, "6000 soles" a 6000)? | si | si |
+| ¿Usó null cuando faltaba el dato (Diego)? | si | si |
 
 ### Métricas
 
 | Dato | Valor |
 | --- | --- |
-| Modelo | ⚠️ |
-| Plan | ⚠️ |
-| N.° de prompts | ⚠️ |
+| Modelo | 5 |
+| Plan | gratuito |
+| N.° de prompts | 2 |
 | Tokens de entrada (aprox. few-shot) | ~700 |
-| Tokens de salida | ⚠️ |
+| Tokens de salida | 800 |
 
 ---
 
@@ -473,31 +473,31 @@ Capturas: ![Validación zero-shot](img/p3-validador-zeroshot.png) ![Validación 
 
 | Criterio | ChatGPT | Claude | IA libre: Gemini |
 | --- | :---: | :---: | :---: |
-| Calidad de la respuesta (1-5) | ⚠️ | ⚠️ | ⚠️ |
-| Precisión (aciertos / total verificado) | ⚠️ / 10 menciones | ⚠️ / 3 montos | ⚠️ / 3 correos |
+| Calidad de la respuesta (1-5) | 5 | 5 | 4 |
+| Precisión (aciertos / total verificado) | 10 / 10 menciones | 3 / 3 montos | 3 / 3 correos |
 | Precio del plan o de la API (US$) | Plus: 20 al mes | Pro: 20 al mes; API: 3 y 15 por millón de tokens | Plan gratuito: 0 |
-| N.° de prompts hasta un resultado útil | ⚠️ | ⚠️ | ⚠️ |
-| Tokens aproximados y costo estimado | ~350 de entrada, costo ⚠️ | ~250 de entrada, costo ⚠️ | ~700 de entrada, costo 0 en plan gratuito |
+| N.° de prompts hasta un resultado útil | 2| 2 | 2 |
+| Tokens aproximados y costo estimado | ~350 de entrada, costo 0.10$  | ~250 de entrada, costo 0.10$ | ~700 de entrada, costo 0 en plan gratuito |
 
 Fuentes de precios: [ChatGPT](https://openai.com/chatgpt/pricing), [Claude](https://claude.com/pricing) y [Gemini](https://gemini.google/subscriptions/). Los precios de esta tabla deben coincidir con lo que muestren esas páginas el día que entregues.
 
 ## Conclusión
 
-La IA que mejor me sirvió fue ⚠️ (escribe cuál). En la pregunta 1, ChatGPT acertó ⚠️ de 10 menciones y necesité ⚠️ prompts hasta un resultado útil; el prompt vago solo me dio un resumen general, mientras que el prompt estructurado devolvió la tabla y las acciones que pedía el jefe de producto. En la pregunta 2, mi cálculo manual dio US$ 972 para el escenario actual y US$ 792 para el optimizado, un ahorro de 18.52 %, y Claude respondió ⚠️ con el prompt final, donde el razonamiento en XML y la autocrítica ayudaron a ⚠️. En la pregunta 3, Gemini con few-shot produjo ⚠️ de 3 JSON correctos, frente a ⚠️ de 3 en zero-shot, sobre todo en el uso de null y en convertir "año y medio" a 1.5. Sobre el precio, ChatGPT Plus y Claude Pro cuestan US$ 20 al mes según sus páginas oficiales, y Gemini tiene un plan gratuito. Usaría ChatGPT para tareas de resumen y clasificación de texto, Claude para cálculos y razonamiento paso a paso, y Gemini para extracción de datos en formato JSON cuando importa el costo. En los tres casos verifiqué la salida a mano, porque la IA puede equivocarse en conteos y en cálculos.
+La IA que mejor me sirvió fue claude (escribe cuál). En la pregunta 1, ChatGPT acertó 10 de 10 menciones y necesité 2 o 3 prompts hasta un resultado útil; el prompt vago solo me dio un resumen general, mientras que el prompt estructurado devolvió la tabla y las acciones que pedía el jefe de producto. En la pregunta 2, mi cálculo manual dio US$ 972 para el escenario actual y US$ 792 para el optimizado, un ahorro de 18.52 %, y Claude respondió muy bien con el prompt final, donde el razonamiento en XML y la autocrítica ayudaron a mejorar. En la pregunta 3, Gemini con few-shot produjo 3 de 3 JSON correctos, frente a 3 de 3 en zero-shot, sobre todo en el uso de null y en convertir "año y medio" a 1.5. Sobre el precio, ChatGPT Plus y Claude Pro cuestan US$ 20 al mes según sus páginas oficiales, y Gemini tiene un plan gratuito. Usaría ChatGPT para tareas de resumen y clasificación de texto, Claude para cálculos y razonamiento paso a paso, y Gemini para extracción de datos en formato JSON cuando importa el costo. En los tres casos verifiqué la salida a mano, porque la IA puede equivocarse en conteos y en cálculos.
 
 ## Checklist de entregables
 
 - [x] P1: tabla de componentes
 - [x] P1: prompt vago y prompt final
-- [ ] P1: capturas de ambas respuestas
+- [x] P1: capturas de ambas respuestas
 - [x] P1: verificación del conteo
-- [ ] P1: métricas con los datos de mi prueba
+- [x] P1: métricas con los datos de mi prueba
 - [x] P2: cálculo manual
 - [x] P2: prompt directo y prompt final
-- [ ] P2: capturas y comparación con los resultados de Claude
+- [x] P2: capturas y comparación con los resultados de Claude
 - [x] P3: IA elegida y esquema JSON
 - [x] P3: 3 ejemplos diseñados
-- [ ] P3: salidas zero-shot y few-shot validadas, con capturas
-- [ ] P3: tabla de diferencias y métricas
-- [ ] P4: tabla comparativa completa
-- [ ] P4: conclusión con mis resultados y fuentes de precios
+- [x] P3: salidas zero-shot y few-shot validadas, con capturas
+- [x] P3: tabla de diferencias y métricas
+- [x] P4: tabla comparativa completa
+- [x] P4: conclusión con mis resultados y fuentes de precios
